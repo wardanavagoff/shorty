@@ -24,7 +24,7 @@
         "phpunit/phpunit" : "4.*",
         "scrutinizer/ocular": "~1.1"
     },
-    "autoload": {
+    "autoload": { 
         "psr-4": {
             "Mbarwick83\\Shorty\\": "Mbarwick83/Shorty/src"
         }
