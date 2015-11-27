@@ -7,7 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Google Url Shortener API Package for Laravel 5.1. Library to shorten URLs, expand URLs, and get stats for shorten URLs. e.g. **goo.gl/XXXXX**
+Google Url Shortener API Package for Laravel 5.1. Library to shorten URLs, expand URLs, and get stats for shortened URLs. e.g. **goo.gl/XXXXX**
 
 ## Installation
 
