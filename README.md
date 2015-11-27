@@ -41,7 +41,7 @@ This will create a shorty.php in your config directory. Here you **must** enter 
 
 ## Usage
 
-####To shorten a URL:####
+#####To shorten a URL:
 
 ``` php
 $url = "http://google.com";
@@ -51,7 +51,7 @@ Shorty::shorten($url);
 // returns, http://goo.gl/XXXXX
 ```
 
-####To expand a shortened URL:####
+#####To expand a shortened URL:
 
 ``` php
 $url = "http://goo.gl/XXXXX";
@@ -61,7 +61,7 @@ Shorty::expand($url);
 // returns, http://google.com
 ```
 
-####To get stats on shortened URL:####
+#####To get stats on shortened URL:
 
 ``` php
 $url = "http://goo.gl/XXXXX";
@@ -69,9 +69,9 @@ $url = "http://goo.gl/XXXXX";
 Shorty::stats($url);
 ```
 
-**If successful, stats response will return:**
+*If successful, stats response will return:*
 
-```json
+```
 {
  "kind": "urlshortener#url",
  "id": "http://goo.gl/fbsS",
