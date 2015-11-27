@@ -7,20 +7,92 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Google Url Shortener API Package for Laravel 5.1
+Google Url Shortener API Package for Laravel 5.1. Library to shorten URLs, expand URLs, and get stats for shorten URLs. e.g. **goo.gl/XXXXX**
 
-## Install
+## Installation
 
-Via Composer
+To install, run the following in your project directory
 
 ``` bash
 $ composer require mbarwick83/shorty
 ```
 
+Then in `config/app.php` add the following to the `providers` array:
+
+```
+Mbarwick83\Shorty\ShortyServiceProvider::class
+```
+
+Also in `config/app.php`, add the Facade class to the `aliases` array:
+
+```
+'Shorty'    => Mbarwick83\Shorty\Facades\Shorty::class
+```
+
+## Configuration
+
+To publish Shorty's configuration file, run the following `vendor:publish` command:
+
+```
+php artisan vendor:publish --provider="Mbarwick83\Shorty\ShortyServiceProvider"
+```
+
+This will create a shorty.php in your config directory. Here you **must** enter your Google Shortener URL API Key. Get an API key at [https://developers.google.com/url-shortener/v1/getting_started#APIKey](https://developers.google.com/url-shortener/v1/getting_started#APIKey).
+
 ## Usage
 
+####To shorten a URL:####
+
 ``` php
-//
+$url = "http://google.com";
+
+Shorty::shorten($url);
+
+// returns, http://goo.gl/XXXXX
+```
+
+####To expand a shortened URL:####
+
+``` php
+$url = "http://goo.gl/XXXXX";
+
+Shorty::expand($url);
+
+// returns, http://google.com
+```
+
+####To get stats on shortened URL:####
+
+``` php
+$url = "http://goo.gl/XXXXX";
+
+Shorty::stats($url);
+```
+
+**If successful, stats response will return:**
+
+```json
+{
+ "kind": "urlshortener#url",
+ "id": "http://goo.gl/fbsS",
+ "longUrl": "http://www.google.com/",
+ "status": "OK",
+ "created": "2009-12-13T07:22:55.000+00:00",
+ "analytics": {
+  "allTime": {
+   "shortUrlClicks": "3227",
+   "longUrlClicks": "9358",
+   "referrers": [ { "count": "2160", "id": "Unknown/empty" } /* , ... */ ],
+   "countries": [ { "count": "1022", "id": "US" } /* , ... */ ],
+   "browsers": [ { "count": "1025", "id": "Firefox" } /* , ... */ ],
+   "platforms": [ { "count": "2278", "id": "Windows" } /* , ... */ ]
+  },
+  "month": { /* ... */ },
+  "week": { /* ... */ },
+  "day": { /* ... */ },
+  "twoHours": { /* ... */ }
+ }
+}
 ```
 
 ## Change log
@@ -57,5 +129,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-scrutinizer]: https://scrutinizer-ci.com/g/thephpleague/:package_name/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/thephpleague/:package_name
 [link-downloads]: https://packagist.org/packages/league/:package_name
-[link-author]: https://github.com/:author_username
+[link-author]: https://github.com/mbarwick83
 [link-contributors]: ../../contributors
