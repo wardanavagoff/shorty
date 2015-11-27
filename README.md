@@ -41,11 +41,6 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CONDUCT](CONDUCT.md) for details
 
 If you discover any security related issues, please email :author_email instead of using the issue tracker.
 
-## Credits
-
-- [Mike Barwick][link-author]
-- [All Contributors][link-contributors]
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
