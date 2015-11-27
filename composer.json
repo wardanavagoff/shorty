@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mbarwick83\\Shorty\\": "packages/Mbarwick83/Shorty/src"
+            "Mbarwick83\\Shorty\\": "Mbarwick83/Shorty/src"
         }
     },
     "autoload-dev": {
