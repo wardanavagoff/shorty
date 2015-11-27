@@ -41,6 +41,12 @@ This will create a shorty.php in your config directory. Here you **must** enter 
 
 ## Usage
 
+**Be sure to include the namespace for the class wherever you plan to use this library**
+
+```
+use Mbarwick83\Shorty\Facades\Shorty;
+```
+
 #####To shorten a URL:
 
 ``` php
