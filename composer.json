@@ -1,6 +1,6 @@
 {
     "name": "mbarwick83/shorty",
-    "description": "Google Url Shortener API Package for Laravel 5",
+    "description": "Google Url Shortener API Package for Laravel 5.1",
     "keywords": [
         "google",
         "url",
