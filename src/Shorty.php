@@ -137,4 +137,28 @@ class Shorty extends ShortLinkAbstractInterface
 
         return $data;
     }
+    /**
+     * Validates if the URL to submit actually exists and is accessible.
+     *
+     * @param $url string                 URL being submitted.
+     * @throws \Sonrisa\Service\ShortLink\Exceptions\InvalidApiResponseException
+     * @return boolean
+     */
+    protected function urlCheck($url)
+    {
+        // first check if url has http:// prefix, if not, add it
+        $parsed = parse_url($url);
+
+        if (empty($parsed['scheme'])) {
+            $url = 'http://' . ltrim($url, '/');
+        }
+
+        $file_headers = get_headers($url);
+
+        if (!strpos($file_headers[0], "404 Not Found") > 0) {
+            return true;
+        }
+        
+        return false;
+    }
 }
