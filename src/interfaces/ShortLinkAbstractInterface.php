@@ -35,40 +35,18 @@ abstract class ShortLinkAbstractInterface
     {
         // first check if url has http:// prefix, if not, add it
         $parsed = parse_url($url);
+
         if (empty($parsed['scheme'])) {
             $url = 'http://' . ltrim($url, '/');
         }
 
-        $opts = array
-        (
-            'http'=>array
-            (
-                'method'=>"HEAD",
-                'header'=>"Accept-language: en\r\n"
-            )
-        );
+        $file_headers = get_headers($url);
 
-        $context = stream_context_create($opts);
-
-        $fp = @fopen($url, 'r', false, $context);
-        @fpassthru($fp);
-        @fclose($fp);
-
-        if (empty($http_response_header)) {
-            throw new InvalidApiResponseException('URL provided is not a valid resource');
+        if (!strpos($file_headers[0], "404 Not Found") > 0) {
+            return true;
         }
-
-        return
-        (
-            ($http_response_header[0] == "HTTP/1.1 200 OK") ||
-            ($http_response_header[0] == "HTTP/1.0 200 OK") ||
-            ($http_response_header[0] == "HTTP/1.0 301 Moved Permanently") ||
-            ($http_response_header[0] == "HTTP/1.1 301 Moved Permanently") ||
-            ($http_response_header[0] == "HTTP/1.0 301 Moved") ||
-            ($http_response_header[0] == "HTTP/1.1 301 Moved") ||
-            ($http_response_header[0] == "HTTP/1.1 302 Found") ||
-            ($http_response_header[0] == "HTTP/1.0 302 Found")
-        );
+        
+        return false;
     }
 
     /**
