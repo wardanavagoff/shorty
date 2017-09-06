@@ -5,7 +5,7 @@ namespace Mbarwick83\Shorty\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Mbarwick83\Previewr\Previewr
+ * @see \Mbarwick83\Shorty\Shorty
  */
 class Shorty extends Facade
 {
