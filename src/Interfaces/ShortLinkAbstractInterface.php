@@ -40,7 +40,7 @@ abstract class ShortLinkAbstractInterface
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $context["http"]["method"]);
                 }
                 if (array_key_exists("header", $context["http"])) {
-                    $delimiter = strpos("\r\n") === false ? "\n" : "\r\n";
+                    $delimiter = strpos($context["http"]["header"], "\r\n") === false ? "\n" : "\r\n";
                     $headers = array_filter(explode($delimiter, $context["http"]["header"]), function($item) {
                         return !is_null($item);
                     });
