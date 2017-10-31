@@ -44,6 +44,9 @@ class Shorty extends ShortLinkAbstractInterface
                                         "Content-Type: application/json\r\n",
                     'ignore_errors' => true,
                     'content'       => json_encode(array('longUrl' => $longUrl)),
+                ),
+                "ssl" => array(
+                    "verify_peer" => false
                 )
             );
 
@@ -69,7 +72,11 @@ class Shorty extends ShortLinkAbstractInterface
     {
         if ($this->urlCheck($shortUrl)) {
             $params = (!empty($this->apiKey)) ? '?'.implode('&',array($this->apiKey,"shortUrl={$shortUrl}")) : "?shortUrl={$shortUrl}";
-            $data = $this->request($this->api.$params,stream_context_create( array('http' => array('ignore_errors' => true) ) ) );
+            $streamContext = stream_context_create(array(
+                'http' => array('ignore_errors' => true),
+                "ssl" => array( "verify_peer" => false ) 
+            ) );
+            $data = $this->request($this->api.$params, $streamContext);
             $data = json_decode($data,true);
             $data = $this->validate($data,'expand');
 
@@ -89,7 +96,11 @@ class Shorty extends ShortLinkAbstractInterface
     {
         if ($this->urlCheck($shortUrl)) {
             $params = (!empty($this->apiKey)) ? '?'.implode('&',array($this->apiKey,"shortUrl={$shortUrl}","projection=FULL")) : implode('&',array("shortUrl={$shortUrl}","projection=FULL"));
-            $data = $this->request($this->api.$params,stream_context_create( array('http' => array('ignore_errors' => true) ) ));
+            $streamContext = stream_context_create(array(
+                'http' => array('ignore_errors' => true),
+                "ssl" => array( "verify_peer" => false ) 
+            ) );
+            $data = $this->request($this->api.$params,$streamContext);
             $data = json_decode($data,true);
             $data = $this->validate($data,'expand');
 
