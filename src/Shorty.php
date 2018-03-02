@@ -166,10 +166,10 @@ class Shorty extends ShortLinkAbstractInterface
 
         $file_headers = get_headers($url);
 
-        if (!strpos($file_headers[0], "404 Not Found") > 0) {
-            return true;
-        }
+        //if (!strpos($file_headers[0], "404 Not Found") > 0) {
+            //return true;
+        //}
         
-        return false;
+        return true;
     }
 }
