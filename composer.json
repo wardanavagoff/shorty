@@ -1,5 +1,5 @@
 {
-    "name": "Shortener/shorty",
+    "name": "shortener/shorty",
     "description": "Google Url Shortener API Package for Laravel 5.1",
     "keywords": [
         "google",
